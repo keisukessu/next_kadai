@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth"
 import { prisma } from "@/lib/db"
 import { postSchema } from "@/lib/validations"
 import { authOptions } from "@/lib/auth"
+import { z } from "zod"
 
 export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
