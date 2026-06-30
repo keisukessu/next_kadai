@@ -1,9 +1,10 @@
 // components/posts/PostForm.tsx
+"use client"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { postSchema } from "@/lib/validations"
 
-interface PostFormData {
+export interface PostFormData {
     title: string
     content: string
 }
