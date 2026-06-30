@@ -45,10 +45,25 @@ export const authOptions: NextAuthOptions = {
             }
         })
     ],
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id  // ログイン時にidをtokenに入れる
+            }
+            return token
+        },
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.id = token.id as string  // tokenからsessionにidを移す
+            }
+            return session
+        }
+    },
     session: {
         strategy: "jwt"
     },
     pages: {
         signIn: "/login"
-    }
+    },
+    secret: process.env.NEXTAUTH_SECRET,
 }
