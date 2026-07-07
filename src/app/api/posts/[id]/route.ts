@@ -10,6 +10,15 @@ export async function GET(
     request: NextRequest,
     { params }: { params: { id: string } }
 ) {
+
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
+        return NextResponse.json(
+            { error: "認証が必要です" },
+            { status: 401 }
+        )
+    }
+
     try {
         const { id } = params
 
@@ -60,16 +69,16 @@ export async function PUT(
     request: NextRequest,
     { params }: { params: { id: string } }
 ) {
-    try {
-        // ログインチェック
-        const session = await getServerSession(authOptions)
-        if (!session?.user?.id) {
-            return NextResponse.json(
-                { error: "認証が必要です" },
-                { status: 401 }
-            )
-        }
+    // ログインチェック
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
+        return NextResponse.json(
+            { error: "認証が必要です" },
+            { status: 401 }
+        )
+    }
 
+    try {
         const { id } = params
 
         // 投稿を取得
@@ -136,16 +145,16 @@ export async function DELETE(
     request: NextRequest,
     { params }: { params: { id: string } }
 ) {
-    try {
-        // ログインチェック
-        const session = await getServerSession(authOptions)
-        if (!session?.user?.id) {
-            return NextResponse.json(
-                { error: "認証が必要です" },
-                { status: 401 }
-            )
-        }
+    // ログインチェック
+    const session = await getServerSession(authOptions)
+    if (!session?.user?.id) {
+        return NextResponse.json(
+            { error: "認証が必要です" },
+            { status: 401 }
+        )
+    }
 
+    try {
         const { id } = params
 
         // 投稿を取得
