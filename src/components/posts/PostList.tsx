@@ -4,7 +4,10 @@ import { PostCard } from "./PostCard"
 import { Pagination } from "../ui/Pagination"
 
 interface PostWithAuthor extends Post {
-    author: User
+    author: {
+        id: string
+        name: string
+    }
     _count: {
         responses: number
     }
