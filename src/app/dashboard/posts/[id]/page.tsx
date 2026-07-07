@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { notFound } from "next/navigation"
 import { PostDetail } from "@/components/posts/PostDetail"
+import { redirect } from "next/navigation"
 
 export default async function PostDetailPage({
     params
@@ -11,6 +12,10 @@ export default async function PostDetailPage({
     params: { id: string }
 }) {
     const session = await getServerSession(authOptions)
+
+    if (!session) {
+        redirect("/login")
+    }
 
     const post = await prisma.post.findUnique({
         where: {
