@@ -30,7 +30,7 @@ export default function LoginPage() {
         }
 
         // ログイン成功 → トップページへ
-        router.push("/")
+        router.push("/dashboard")
     }
 
     return (

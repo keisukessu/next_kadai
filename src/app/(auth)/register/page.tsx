@@ -27,7 +27,7 @@ export default function RegisterPage() {
         }
 
         // 登録成功 → 確認ページへ
-        router.push("./confirm")
+        router.push("register/confirm")
     }
 
     return (
