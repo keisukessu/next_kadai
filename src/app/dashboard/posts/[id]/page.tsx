@@ -9,17 +9,18 @@ import { redirect } from "next/navigation"
 export default async function PostDetailPage({
     params
 }: {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }) {
     const session = await getServerSession(authOptions)
-
     if (!session) {
         redirect("/login")
     }
 
+    const { id } = await params
+
     const post = await prisma.post.findUnique({
         where: {
-            id: params.id,
+            id,
             isDeleted: false,
             author: { isDeleted: false }
         },

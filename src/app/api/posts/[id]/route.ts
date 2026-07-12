@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth"
 //投稿を１件取得
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
 
     const session = await getServerSession(authOptions)
@@ -20,7 +20,7 @@ export async function GET(
     }
 
     try {
-        const { id } = params
+        const { id } = await params
 
         const post = await prisma.post.findUnique({
             where: {
@@ -67,7 +67,7 @@ export async function GET(
 //投稿を更新
 export async function PUT(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     // ログインチェック
     const session = await getServerSession(authOptions)
@@ -79,7 +79,7 @@ export async function PUT(
     }
 
     try {
-        const { id } = params
+        const { id } = await params
 
         // 投稿を取得
         const post = await prisma.post.findUnique({
@@ -143,7 +143,7 @@ export async function PUT(
 //投稿を削除（論理削除）
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     // ログインチェック
     const session = await getServerSession(authOptions)
@@ -155,7 +155,7 @@ export async function DELETE(
     }
 
     try {
-        const { id } = params
+        const { id } = await params
 
         // 投稿を取得
         const post = await prisma.post.findUnique({

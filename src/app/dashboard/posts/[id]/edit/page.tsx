@@ -9,28 +9,29 @@ import { EditPostForm } from "@/components/posts/EditPostForm"
 export default async function EditPostPage({
     params
 }: {
-    params: { id: string }
+    params: Promise<{ id: string }>
 }) {
-    // ① ログインチェック
+    // ログインチェック
     const session = await getServerSession(authOptions)
     if (!session) {
         redirect("/login")
     }
 
-    // ② DBから投稿を取得
+    // DBから投稿を取得
+    const { id } = await params
     const post = await prisma.post.findUnique({
         where: {
-            id: params.id,
+            id,
             isDeleted: false
         }
     })
 
-    // ③ 投稿が見つからない
+    // 投稿が見つからない
     if (!post) {
         notFound()
     }
 
-    // ④ 自分の投稿でなければ一覧へ
+    // 自分の投稿でなければ一覧へ
     if (post.authorId !== session.user.id) {
         redirect("/dashboard")
     }
