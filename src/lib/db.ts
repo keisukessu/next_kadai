@@ -1,15 +1,17 @@
 // src/lib/db.ts
 import { PrismaClient } from "@prisma/client"
+import { PrismaPg } from "@prisma/adapter-pg"
 
-// グローバル変数の型を拡張
 declare global {
     var prisma: PrismaClient | undefined
 }
 
-// Prisma Clientのインスタンスを作成
-export const prisma = global.prisma || new PrismaClient()
+const adapter = new PrismaPg({
+    connectionString: process.env.DATABASE_URL
+})
 
-// 開発環境ではグローバルに保存する
+export const prisma = global.prisma || new PrismaClient({ adapter })
+
 if (process.env.NODE_ENV !== "production") {
     global.prisma = prisma
 }
