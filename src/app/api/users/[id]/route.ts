@@ -140,7 +140,7 @@ export async function DELETE(
     try {
         await prisma.user.update({
             where: { id },
-            data: { isDeleted: true }
+            data: { isDeleted: true, email: `deleted_${id}@deleted.com` }
         })
 
         return new NextResponse(null, { status: 204 })
