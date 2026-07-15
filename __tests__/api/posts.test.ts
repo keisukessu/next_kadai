@@ -1,6 +1,3 @@
-/**
- * @jest-environment node
- */
 // __tests__/api/posts.test.ts
 import { NextRequest } from "next/server"
 import { GET, POST } from "@/app/api/posts/route"
