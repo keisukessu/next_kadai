@@ -42,7 +42,7 @@ export async function GET(
                     orderBy: { createdAt: "asc" }
                 },
                 _count: {
-                    select: { responses: true }
+                    select: { responses: { where: { isDeleted: false } } }
                 }
             }
         })

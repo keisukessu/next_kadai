@@ -29,7 +29,7 @@ export default async function DashboardPage({
             },
             include: {
                 author: { select: { id: true, name: true } },
-                _count: { select: { responses: true } }
+                _count: { select: { responses: { where: { isDeleted: false } } } }
             },
             orderBy: { createdAt: "desc" },
             skip,

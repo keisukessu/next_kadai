@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
                         select: { id: true, name: true }
                     },
                     _count: {
-                        select: { responses: true }
+                        select: { responses: { where: { isDeleted: false } } }
                     }
                 },
                 orderBy: { createdAt: "desc" },

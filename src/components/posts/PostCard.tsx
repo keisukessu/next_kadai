@@ -36,6 +36,7 @@ export function PostCard({ post, currentUserId }: PostCardProps) {
 
         router.refresh()  // 一覧を再取得して更新
     }
+    console.log("post._count.responses:", post._count.responses)
 
     return (
         <div className="border rounded-md p-4">
