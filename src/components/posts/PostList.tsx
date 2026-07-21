@@ -2,16 +2,7 @@
 import { Post, User } from "@prisma/client"
 import { PostCard } from "./PostCard"
 import { Pagination } from "../ui/Pagination"
-
-interface PostWithAuthor extends Post {
-    author: {
-        id: string
-        name: string
-    }
-    _count: {
-        responses: number
-    }
-}
+import { PostWithAuthor } from "@/types"
 
 interface PostListProps {
     posts: PostWithAuthor[]

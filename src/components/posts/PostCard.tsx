@@ -3,16 +3,7 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Post, User } from "@prisma/client"
-
-interface PostWithAuthor extends Post {
-    author: {
-        id: string
-        name: string
-    }
-    _count: {
-        responses: number
-    }
-}
+import { PostWithAuthor } from "@/types"
 
 interface PostCardProps {
     post: PostWithAuthor
