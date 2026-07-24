@@ -57,7 +57,7 @@ export default async function DashboardPage({
                 >投稿一覧</h1>
                 <Link
                     href="/dashboard/posts/create"
-                    className={`bg-[#a3eda6] text-[#393939] px-4 py-2 rounded-md border border-[#393939] ${sawarabiGothic.className}`}
+                    className={`bg-[#a3eda6] text-[#393939] px-4 py-2 rounded-xl border border-[#393939] ${sawarabiGothic.className}`}
                 >
                     新規投稿
                 </Link>
