@@ -8,7 +8,7 @@ export default function RegisterPage() {
             <div className="w-full max-w-md ">
                 <div className="flex justify-center">
                     <img
-                        src="/register-icon.svg"
+                        src="/icons/register-icon.svg"
                         alt="会員登録"
                         className="w-32 h-32 relative z-10 mb-[-3rem]"
                     />

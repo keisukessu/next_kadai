@@ -18,7 +18,8 @@ export function PostList({
     currentUserId
 }: PostListProps) {
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
+
             {posts.map((post) => (
                 <PostCard
                     key={post.id}

@@ -9,9 +9,12 @@ export default function DashboardLayout({
     return (
         <div>
             <Header />
-            <main className="max-w-4xl mx-auto px-4 py-6">
-                {children}
-            </main>
+            {/* グラデーション背景 */}
+            <div className="bg-[#fcf9ef] min-h-screen">
+                <main className="max-w-4xl mx-auto px-4 py-6">
+                    {children}
+                </main>
+            </div>
         </div>
     )
 }
