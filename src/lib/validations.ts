@@ -10,7 +10,12 @@ export const registerSchema = z.object({
     password: z.string()
         .min(8, "パスワードは8文字以上で入力してください")
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-            "パスワードは大文字、小文字、数字を含む必要があります")
+            "パスワードは大文字、小文字、数字を含む必要があります"),
+    confirmPassword: z.string()
+        .min(1, "確認用パスワードは必須です")
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "パスワードが一致しません",
+    path: ["confirmPassword"]  // エラーをconfirmPasswordフィールドに表示
 })
 
 export const loginSchema = z.object({
