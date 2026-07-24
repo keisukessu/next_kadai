@@ -6,6 +6,7 @@ import { prisma } from "@/lib/db"
 import { PostList } from "@/components/posts/PostList"
 import Link from "next/link"
 import { sawarabiGothic, notoSansJP } from "@/lib/fonts"
+import Image from "next/image"
 
 export default async function DashboardPage({
     searchParams
@@ -48,18 +49,27 @@ export default async function DashboardPage({
 
     return (
         <div className="max-w-4xl mx-auto p-4">
+
+
             <div className="flex justify-between items-center mb-12 mt-4">
+                <Image
+                    src="/images/book.png"
+                    alt="book"
+                    width={60}
+                    height={60}
+                    className="w-auto h-auto"
+                />
                 <h1
-                    className={`text-[40px] font-bold text-white ${notoSansJP.className}`}
+                    className={`text-[50px] font-bold text-white ${notoSansJP.className}`}
                     style={{
-                        textShadow: "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black"
+                        textShadow: "1.5px 1.5px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black"
                     }}
                 >投稿一覧</h1>
                 <Link
                     href="/dashboard/posts/create"
                     className={`bg-[#a3eda6] text-[#393939] px-4 py-2 rounded-xl border border-[#393939] ${sawarabiGothic.className}`}
                 >
-                    新規投稿
+                    ＋  新規投稿
                 </Link>
             </div>
 
