@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function RegisterPage() {
     return (
-        <div className="min-h-screen bg-[#fffcf5] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-[#fafafa] flex items-center justify-center p-4">
             <div className="w-full max-w-md ">
                 <div className="flex justify-center">
                     <img

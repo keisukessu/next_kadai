@@ -57,7 +57,6 @@ export function RegisterForm() {
                         type="text"
                         placeholder="名前を入力"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm placeholder:text-xs"
-                    // ↑ placeholder:text-xs でプレースホルダーを小さく
                     />
                     {errors.name && (
                         <p className="text-red-600 text-sm">{errors.name.message}</p>
@@ -94,7 +93,7 @@ export function RegisterForm() {
                             placeholder="パスワードを入力"
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10 text-sm placeholder:text-xs"
                         />
-                        {/* 目のアイコンはそのまま */}
+                        {/* 目のアイコン */}
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
