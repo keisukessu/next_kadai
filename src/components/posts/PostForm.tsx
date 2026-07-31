@@ -39,7 +39,7 @@ export function PostForm({
                     {...register("title")}
                     id="title"
                     type="text"
-                    className="bg-white mt-1 mb-8 block w-full rounded-md border border-gray-300"
+                    className="bg-white mt-1 mb-8 block w-full rounded-md border border-gray-400"
                 />
                 {errors.title && (
                     <p className="text-red-600 text-sm">{errors.title.message}</p>
@@ -54,7 +54,7 @@ export function PostForm({
                     {...register("content")}
                     id="content"
                     rows={5}
-                    className="bg-white mt-1 block w-full rounded-md border border-gray-300"
+                    className="bg-white mt-1 block w-full rounded-md border border-gray-400"
                 />
                 {errors.content && (
                     <p className="text-red-600 text-sm">{errors.content.message}</p>
@@ -64,13 +64,7 @@ export function PostForm({
             <button
                 type="submit"
                 disabled={isLoading}
-                className="mt-8 px-6 py-2 rounded-2xl bg-white text-[#414245] border-2 border-[#1b3c97] font-medium cursor-pointer transition-all duration-200"
-                onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)"
-                }}
-                onMouseLeave={(e) => {
-                    e.currentTarget.style.boxShadow = "none"
-                }}
+                className="mt-8 px-6 py-2 rounded-2xl bg-white text-[#414245] border-2 border-[#1b3c97] font-medium cursor-pointer hover:shadow-md transition-all duration-200"
             >
                 {isLoading ? "送信中..." : "投稿する"}
             </button>
