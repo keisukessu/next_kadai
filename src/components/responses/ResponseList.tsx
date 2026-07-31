@@ -1,4 +1,4 @@
-// src/components/posts/ResponseList.tsx
+// src/components/responses/ResponseList.tsx
 "use client"
 
 interface Response {
@@ -15,7 +15,7 @@ interface ResponseListProps {
     responses: Response[]
     currentUserId?: string
     postId: string
-    onDelete: () => void  // 削除後に呼ばれる
+    onDelete: () => void
 }
 
 export function ResponseList({
@@ -30,13 +30,11 @@ export function ResponseList({
             `/api/posts/${postId}/responses/${responseId}`,
             { method: "DELETE" }
         )
-
         if (!res.ok) {
             alert("削除に失敗しました")
             return
         }
-
-        onDelete()  // 親コンポーネントに削除を通知
+        onDelete()
     }
 
     if (responses.length === 0) {
@@ -44,32 +42,28 @@ export function ResponseList({
     }
 
     return (
-        <div className="space-y-4">
-            {responses.map((response) => (
-                <div key={response.id} className="border rounded-md p-3">
-                    {/* 投稿者・日時 */}
-                    <div className="flex justify-between items-center mb-2">
-                        <div className="text-sm text-gray-500">
-                            <span>{response.author.name}</span>
-                            <span className="mx-2">·</span>
-                            <span>
-                                {new Date(response.createdAt).toLocaleDateString("ja-JP")}
-                            </span>
+        <div>
+            {responses.map((response, index) => (
+                <div key={response.id}>
+                    {index !== 0 && <hr className="border-gray-200" />}
+                    <div className="py-3">
+                        <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2 text-sm text-gray-500">
+                                <span>{response.author.name}</span>
+                                <span>·</span>
+                                <span>{new Date(response.createdAt).toLocaleDateString("ja-JP")}</span>
+                            </div>
+                            {currentUserId === response.author.id && (
+                                <button
+                                    onClick={() => handleDelete(response.id)}
+                                    className="text-red-500 text-xs hover:underline"
+                                >
+                                    削除
+                                </button>
+                            )}
                         </div>
-
-                        {/* 削除ボタン（自分のレスのみ） */}
-                        {currentUserId === response.author.id && (
-                            <button
-                                onClick={() => handleDelete(response.id)}
-                                className="text-red-600 text-sm hover:underline"
-                            >
-                                削除
-                            </button>
-                        )}
+                        <p className="text-sm whitespace-pre-wrap">{response.content}</p>
                     </div>
-
-                    {/* 内容 */}
-                    <p className="whitespace-pre-wrap">{response.content}</p>
                 </div>
             ))}
         </div>
