@@ -50,7 +50,6 @@ export default async function DashboardPage({
     return (
         <div className="max-w-4xl mx-auto p-4">
 
-
             <div className="flex justify-between items-center mb-12 mt-4">
                 <Image
                     src="/images/book.png"
@@ -67,9 +66,20 @@ export default async function DashboardPage({
                 >投稿一覧</h1>
                 <Link
                     href="/dashboard/posts/create"
-                    className={`bg-[#a3eda6] text-[#393939] px-4 py-2 rounded-xl border border-[#393939] ${sawarabiGothic.className}`}
+                    className={`
+                        bg-white
+                        text-[#414245]
+                        text-lg
+                        px-4 py-2
+                        rounded-xl
+                        border-2 border-[#1b3c97]
+                        hover:shadow-xl
+                        transition-all
+                        duration-200
+                        ${sawarabiGothic.className}
+                    `}
                 >
-                    ＋  新規投稿
+                    ＋ 新規投稿
                 </Link>
             </div>
 
