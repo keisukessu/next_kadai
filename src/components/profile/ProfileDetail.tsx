@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { signOut } from "next-auth/react"
 import Link from "next/link"
+import { sawarabiGothic } from "@/lib/fonts"
 
 interface ProfileDetailProps {
     user: {
@@ -32,9 +33,9 @@ export function ProfileDetail({ user }: ProfileDetailProps) {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-10">
             {/* プロフィール情報 */}
-            <div className="border rounded-md p-4 space-y-4">
+            <div className="bg-[#ffffff] border-[2px] rounded-md p-6 space-y-4">
                 <div>
                     <p className="text-sm text-gray-500">名前</p>
                     <p className="font-medium">{user.name}</p>
@@ -54,7 +55,19 @@ export function ProfileDetail({ user }: ProfileDetailProps) {
             {/* 編集ボタン */}
             <Link
                 href="/dashboard/profile/edit"
-                className="block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-md"
+                className={`
+                                        bg-white
+                                        text-[#414245]
+                                        text-md
+                                        px-4 py-2
+                                        mr-8
+                                        rounded-xl
+                                        border-2 border-[#1b3c97]
+                                        hover:shadow-xl
+                                        transition-all
+                                        duration-200
+                                        ${sawarabiGothic.className}
+                                    `}
             >
                 プロフィールを編集
             </Link>
@@ -62,7 +75,19 @@ export function ProfileDetail({ user }: ProfileDetailProps) {
             {/* 退会ボタン */}
             <button
                 onClick={handleDelete}
-                className="block w-full text-center bg-red-600 text-white px-4 py-2 rounded-md"
+                className={`
+                                        bg-red-500
+                                        text-white
+                                        text-[#414245]
+                                        text-md
+                                        px-4 py-2
+                                        rounded-xl
+                                        border-2 border-[#000000]
+                                        hover:shadow-xl
+                                        transition-all
+                                        duration-200
+                                        ${sawarabiGothic.className}
+                                    `}
             >
                 退会する
             </button>
