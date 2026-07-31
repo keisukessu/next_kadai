@@ -11,7 +11,7 @@ import Image from "next/image"
 export default async function DashboardPage({
     searchParams
 }: {
-    searchParams: { page?: string }
+    searchParams: Promise<{ page?: string }>
 }) {
     const session = await getServerSession(authOptions)
 
@@ -19,7 +19,8 @@ export default async function DashboardPage({
         redirect("/login")
     }
 
-    const page = parseInt(searchParams.page || "1")
+    const { page: pageParam } = await searchParams
+    const page = parseInt(pageParam || "1")
     const limit = 10
     const skip = (page - 1) * limit
 
@@ -59,10 +60,7 @@ export default async function DashboardPage({
                     className="w-auto h-auto"
                 />
                 <h1
-                    className={`text-[50px] font-bold text-white ${notoSansJP.className}`}
-                    style={{
-                        textShadow: "1.5px 1.5px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black"
-                    }}
+                    className={`text-[50px] text-stroke font-bold text-white ${notoSansJP.className}`}
                 >投稿一覧</h1>
                 <Link
                     href="/dashboard/posts/create"

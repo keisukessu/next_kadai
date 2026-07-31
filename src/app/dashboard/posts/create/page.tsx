@@ -15,10 +15,7 @@ export default async function CreatePostPage() {
     return (
         <div>
             <h1
-                className={`text-[35px] font-bold tracking-[4.0px] text-white mt-8 ${notoSansJP.className}`}
-                style={{
-                    textShadow: "1.5px 1.5px 0 black, -1.5px -1.5px 0 black, 1.5px -1.5px 0 black, -1.5px 1.5px 0 black"
-                }}
+                className={`text-[35px] text-stroke font-bold tracking-[4.0px] text-white mt-8 ${notoSansJP.className}`}
             >新規投稿</h1>
             <CreatePostForm />
         </div>

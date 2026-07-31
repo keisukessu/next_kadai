@@ -39,7 +39,7 @@ export function PostForm({
                     {...register("title")}
                     id="title"
                     type="text"
-                    className="bg-white mt-1 mb-8 block w-full rounded-md border border-gray-400"
+                    className="bg-white p-1 mt-1 mb-8 block w-full rounded-md border border-gray-400"
                 />
                 {errors.title && (
                     <p className="text-red-600 text-sm">{errors.title.message}</p>
@@ -54,7 +54,7 @@ export function PostForm({
                     {...register("content")}
                     id="content"
                     rows={5}
-                    className="bg-white mt-1 block w-full rounded-md border border-gray-400"
+                    className="bg-white p-1 mt-1 block w-full rounded-md border border-gray-400"
                 />
                 {errors.content && (
                     <p className="text-red-600 text-sm">{errors.content.message}</p>
