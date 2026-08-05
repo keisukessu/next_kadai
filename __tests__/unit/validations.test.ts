@@ -29,7 +29,8 @@ describe("Validation Schemas", () => {
             const validData = {
                 name: "テストユーザー",
                 email: "test@example.com",
-                password: "Password123"
+                password: "Password123",
+                confirmPassword: "Password123"
             }
 
             expect(() => registerSchema.parse(validData)).not.toThrow()
@@ -39,9 +40,20 @@ describe("Validation Schemas", () => {
             const invalidData = {
                 name: "テストユーザー",
                 email: "invalid-email",
-                password: "Password123"
+                password: "Password123",
+                confirmPassword: "Password123"
             }
 
+            expect(() => registerSchema.parse(invalidData)).toThrow()
+        })
+
+        it("パスワードが一致しない場合はエラーを返す", () => {
+            const invalidData = {
+                name: "テストユーザー",
+                email: "test@example.com",
+                password: "Password123",
+                confirmPassword: "Password456"  // ← 不一致
+            }
             expect(() => registerSchema.parse(invalidData)).toThrow()
         })
     })
@@ -110,27 +122,83 @@ describe("Validation Schemas", () => {
     })
     // UpdateProfileスキーマのテスト
     describe("updateProfileSchema", () => {
-        it("有効な名前を通す", () => {
+        it("名前・メールのみ更新できる（パスワード空欄）", () => {
             const validData = {
-                name: "新しい名前"
+                name: "テストユーザー",
+                email: "test@example.com",
+                password: "",
+                confirmPassword: ""
             }
+            expect(() => updateProfileSchema.parse(validData)).not.toThrow()
+        })
 
+        it("名前・メール・パスワードを更新できる", () => {
+            const validData = {
+                name: "テストユーザー",
+                email: "test@example.com",
+                password: "Password123",
+                confirmPassword: "Password123"
+            }
             expect(() => updateProfileSchema.parse(validData)).not.toThrow()
         })
 
         it("名前が空の場合はエラーを返す", () => {
             const invalidData = {
-                name: ""
+                name: "",
+                email: "test@example.com",
+                password: "",
+                confirmPassword: ""
             }
+            expect(() => updateProfileSchema.parse(invalidData)).toThrow()
+        })
 
+        it("メールアドレスが空の場合はエラーを返す", () => {
+            const invalidData = {
+                name: "テストユーザー",
+                email: "",
+                password: "",
+                confirmPassword: ""
+            }
+            expect(() => updateProfileSchema.parse(invalidData)).toThrow()
+        })
+
+        it("メールアドレスの形式が不正な場合はエラーを返す", () => {
+            const invalidData = {
+                name: "テストユーザー",
+                email: "invalid-email",
+                password: "",
+                confirmPassword: ""
+            }
+            expect(() => updateProfileSchema.parse(invalidData)).toThrow()
+        })
+
+        it("パスワードが8文字未満の場合はエラーを返す", () => {
+            const invalidData = {
+                name: "テストユーザー",
+                email: "test@example.com",
+                password: "Pass1",
+                confirmPassword: "Pass1"
+            }
+            expect(() => updateProfileSchema.parse(invalidData)).toThrow()
+        })
+
+        it("パスワードが一致しない場合はエラーを返す", () => {
+            const invalidData = {
+                name: "テストユーザー",
+                email: "test@example.com",
+                password: "Password123",
+                confirmPassword: "Password456"
+            }
             expect(() => updateProfileSchema.parse(invalidData)).toThrow()
         })
 
         it("名前が50文字を超える場合はエラーを返す", () => {
             const invalidData = {
-                name: "a".repeat(51)
+                name: "a".repeat(51),
+                email: "test@example.com",
+                password: "",
+                confirmPassword: ""
             }
-
             expect(() => updateProfileSchema.parse(invalidData)).toThrow()
         })
     })

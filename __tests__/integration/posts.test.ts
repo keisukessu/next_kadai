@@ -59,6 +59,7 @@ afterAll(async () => {
             }
         }
     })
+    await prisma.$disconnect()
 })
 
 describe("投稿のCRUD", () => {

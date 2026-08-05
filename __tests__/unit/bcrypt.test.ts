@@ -1,4 +1,4 @@
-// __tests__/lib/bcrypt.test.ts
+// __tests__/unit/bcrypt.test.ts
 import bcrypt from "bcryptjs"
 
 // bcryptのユニットテスト

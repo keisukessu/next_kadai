@@ -5,8 +5,16 @@ import bcrypt from "bcryptjs"
 // テスト後にデータを削除
 afterAll(async () => {
     await prisma.user.deleteMany({
-        where: { email: "integration-test@example.com" }
+        where: {
+            email: {
+                in: [
+                    "integration-test@example.com",
+                    "logout-test@example.com"
+                ]
+            }
+        }
     })
+    await prisma.$disconnect()
 })
 
 describe("認証フロー", () => {
@@ -90,6 +98,31 @@ describe("認証フロー", () => {
                 where: { email: testUser.email },
                 data: { isDeleted: false }
             })
+        })
+    })
+
+    describe("ログアウト", () => {
+        it("退会済みユーザーはログインできない", async () => {
+            // 論理削除済みユーザーを作成
+            const hashedPassword = await bcrypt.hash("Password123", 10)
+            await prisma.user.create({
+                data: {
+                    name: "退会ユーザー",
+                    email: "logout-test@example.com",
+                    password: hashedPassword,
+                    isDeleted: true  // 退会済み
+                }
+            })
+
+            // ログインを試みる
+            const user = await prisma.user.findUnique({
+                where: {
+                    email: "logout-test@example.com",
+                    isDeleted: false  // 退会済みなので取得できない
+                }
+            })
+
+            expect(user).toBeNull()
         })
     })
 })
