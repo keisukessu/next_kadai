@@ -34,6 +34,10 @@ export function RegisterForm() {
             return
         }
 
+        // sessionStorage に一時保存
+        sessionStorage.setItem("registerEmail", data.email)
+        sessionStorage.setItem("registerPassword", data.password)
+
         router.push("/register/confirm")
     }
 
