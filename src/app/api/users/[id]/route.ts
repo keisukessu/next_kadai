@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { updateProfileSchema } from "@/lib/validations"
+import bcrypt from "bcryptjs"
 
 // GET（プロフィール取得）
 export async function GET(
@@ -94,9 +95,39 @@ export async function PUT(
             )
         }
 
+        // メールアドレスの重複チェック
+        const existing = await prisma.user.findFirst({
+            where: {
+                email: result.data.email,
+                id: { not: id }  // 自分以外で同じメールがないか
+            }
+        })
+
+        if (existing) {
+            return NextResponse.json(
+                { error: "このメールアドレスは既に使用されています" },
+                { status: 400 }
+            )
+        }
+
+        // 更新データを作成
+        const updateData: {
+            name: string
+            email: string
+            password?: string
+        } = {
+            name: result.data.name,
+            email: result.data.email,
+        }
+
+        // パスワードが入力された場合のみハッシュ化して更新
+        if (result.data.password) {
+            updateData.password = await bcrypt.hash(result.data.password, 10)
+        }
+
         const user = await prisma.user.update({
             where: { id },
-            data: { name: result.data.name },
+            data: updateData,
             select: {
                 id: true,
                 name: true,

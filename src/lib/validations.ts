@@ -41,5 +41,25 @@ export const responseSchema = z.object({
 export const updateProfileSchema = z.object({
     name: z.string()
         .min(1, "名前は必須です")
-        .max(50, "名前は50文字以内で入力してください")
+        .max(50, "名前は50文字以内で入力してください"),
+    email: z.string()
+        .email("有効なメールアドレスを入力してください"),
+    password: z.string()
+        .min(8, "パスワードは8文字以上で入力してください")
+        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+            "パスワードは大文字、小文字、数字を含む必要があります")
+        .optional()
+        .or(z.literal("")),  // 空文字もOK
+    confirmPassword: z.string()
+        .optional()
+        .or(z.literal(""))
+}).refine((data) => {
+    // パスワードを入力した場合のみ一致チェック
+    if (data.password && data.password !== data.confirmPassword) {
+        return false
+    }
+    return true
+}, {
+    message: "パスワードが一致しません",
+    path: ["confirmPassword"]
 })

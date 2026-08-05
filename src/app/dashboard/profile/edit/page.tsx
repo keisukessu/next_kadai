@@ -21,6 +21,7 @@ export default async function EditProfilePage() {
         select: {
             id: true,
             name: true,
+            email: true
         }
     })
 
