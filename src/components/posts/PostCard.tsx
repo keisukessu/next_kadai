@@ -77,7 +77,7 @@ export function PostCard({ post, currentUserId }: PostCardProps) {
                 <div className="flex gap-2">
                     <Link
                         href={`/dashboard/posts/${post.id}/edit`}
-                        className="flex items-center gap-1 border border-gray-300 text-gray-600 px-4 py-2 rounded-md text-sm hover:shadow-md"
+                        className="flex items-center gap-1 border border-gray-300 text-gray-600 px-4 py-2 rounded-md text-sm hover:shadow-md transition-shadow duration-150"
                     >
                         {/* 編集アイコン */}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">

@@ -72,7 +72,7 @@ export default async function DashboardPage({
                         rounded-xl
                         border-2 border-[#1b3c97]
                         hover:shadow-xl
-                        transition-all
+                        transition-shadow
                         duration-200
                         ${sawarabiGothic.className}
                     `}
