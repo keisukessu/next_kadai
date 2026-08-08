@@ -1,5 +1,4 @@
 // components/posts/PostList.tsx
-import { Post, User } from "@prisma/client"
 import { PostCard } from "./PostCard"
 import { Pagination } from "../ui/Pagination"
 import { PostWithAuthor } from "@/types"

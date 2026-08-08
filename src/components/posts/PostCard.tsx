@@ -2,7 +2,6 @@
 "use client"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Post, User } from "@prisma/client"
 import { PostWithAuthor } from "@/types"
 import { sawarabiGothic, notoSansJP } from "@/lib/fonts"
 
