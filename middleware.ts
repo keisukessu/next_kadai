@@ -12,10 +12,6 @@ export function middleware(request: NextRequest) {
             const origin = request.headers.get("origin")
             const allowedOrigin = process.env.NEXTAUTH_URL
 
-            console.log("origin:", JSON.stringify(origin))
-            console.log("allowedOrigin:", JSON.stringify(allowedOrigin))
-            console.log("match:", origin === allowedOrigin)
-
             if (!origin || origin !== allowedOrigin) {
                 return NextResponse.json(
                     { error: "不正なリクエストです" },
