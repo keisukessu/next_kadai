@@ -14,21 +14,28 @@ Next.jsで作成したログイン式の掲示板です。
 
 ## 画面一覧
 
-| ログイン | 会員登録 |
-|------|------|
-| ![ログイン](public/screen/login.png) | ![会員登録](public/screen/register.png) |
+## 画面一覧
 
-| 投稿一覧 | 投稿詳細 |
-|------|------|
-| ![投稿一覧](public/screen/dashboard.png) | ![投稿詳細](public/screen/postDetail.png) |
+### ログイン
+![ログイン](public/screen/login.png)
 
-| 投稿作成 | プロフィール |
-|------|------|
-| ![投稿作成](public/screen/postCreate.png) | ![プロフィール](public/screen/profile.png) |
+### 会員登録
+![会員登録](public/screen/register.png)
 
-| プロフィール編集 | |
-|------|------|
-| ![プロフィール編集](public/screen/editProfile.png) | |
+### 投稿一覧
+![投稿一覧](public/screen/dashboard.png)
+
+### 投稿詳細
+![投稿詳細](public/screen/postDetail.png)
+
+### 投稿作成
+![投稿作成](public/screen/postCreate.png)
+
+### プロフィール
+![プロフィール](public/screen/profile.png)
+
+### プロフィール編集
+![プロフィール編集](public/screen/editProfile.png)
 
 ## 機能一覧
 
