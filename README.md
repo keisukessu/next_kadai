@@ -3,11 +3,32 @@
 ## 概要
 
 Next.jsで作成したログイン式の掲示板です。
-ユーザー登録・ログインを行ったあとで、投稿・レスなどができます。
+
+ユーザー登録・ログインをした状態で、投稿・レスなどができます。
 
 ## デモ
 
 🔗サイトURL： [https://next-kadai-eight.vercel.app](https://next-kadai-eight.vercel.app)
+
+![投稿一覧](public/screen/dashboard.png)
+
+## 画面一覧
+
+| ログイン | 会員登録 |
+|------|------|
+| ![ログイン](public/screen/login.png) | ![会員登録](public/screen/register.png) |
+
+| 投稿一覧 | 投稿詳細 |
+|------|------|
+| ![投稿一覧](public/screen/dashboard.png) | ![投稿詳細](public/screen/postDetail.png) |
+
+| 投稿作成 | プロフィール |
+|------|------|
+| ![投稿作成](public/screen/postCreate.png) | ![プロフィール](public/screen/profile.png) |
+
+| プロフィール編集 | |
+|------|------|
+| ![プロフィール編集](public/screen/editProfile.png) | |
 
 ## 機能一覧
 
