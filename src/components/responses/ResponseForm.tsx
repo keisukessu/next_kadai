@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { responseSchema } from "@/lib/validations"
 import { z } from "zod"
 import { sawarabiGothic } from "@/lib/fonts"
+import { ResponseButton } from "../ui/ResponseButton"
 
 type ResponseFormData = z.infer<typeof responseSchema>
 
@@ -50,26 +51,7 @@ export function ResponseForm({ postId, onSuccess }: ResponseFormProps) {
             {errors.content && (
                 <p className="text-red-600 text-sm">{errors.content.message}</p>
             )}
-            <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`
-                                        bg-white
-                                        text-[#414245]
-                                        text-sm
-                                        font-medium
-                                        px-4 py-2
-                                        rounded-xl
-                                        border-2 border-[#1b3c97]
-                                        hover:shadow-xl
-                                        transition-all
-                                        duration-200
-                                        disabled:opacity-50
-                                        ${sawarabiGothic.className}
-                                    `}
-            >
-                {isSubmitting ? "送信中..." : "レスする"}
-            </button>
+            <ResponseButton isSubmitting={isSubmitting} />
         </form>
     )
 }

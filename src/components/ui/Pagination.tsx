@@ -86,7 +86,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
                     <button
                         key={page}
                         onClick={() => handlePageChange(page)}
-                        className={`px-3 py-1 rounded-md border
+                        className={`px-3 py-1 rounded-md border cursor-pointer
               ${currentPage === page
                                 ? "bg-blue-600 text-white border-blue-600"
                                 : "hover:bg-gray-100"
@@ -101,7 +101,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
             <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-3 py-1 rounded-md border disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+                className="px-3 py-1 rounded-md border disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 cursor-pointer"
             >
                 次へ
             </button>
