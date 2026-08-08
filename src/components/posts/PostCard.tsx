@@ -41,10 +41,26 @@ export function PostCard({ post, currentUserId }: PostCardProps) {
             </div>
 
             {/* タイトル + > アイコン */}
-            <Link href={`/dashboard/posts/${post.id}`} className="flex items-center justify-between group">
-                <h2 className={`text-[#393939] text-lg font-bold group-hover:underline pt-2 pb-2 pr-12 pl-2 ${notoSansJP.className}`}>{post.title}</h2>
-                {/* > アイコン */}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors flex-shrink-0">
+            <Link
+                href={`/dashboard/posts/${post.id}`}
+                className="flex items-center justify-between"
+                onMouseEnter={(e) => {
+                    const h2 = e.currentTarget.querySelector("h2")
+                    const svg = e.currentTarget.querySelector("svg")
+                    if (h2) h2.style.textDecoration = "underline"
+                    if (svg) svg.style.color = "#2563eb"
+                }}
+                onMouseLeave={(e) => {
+                    const h2 = e.currentTarget.querySelector("h2")
+                    const svg = e.currentTarget.querySelector("svg")
+                    if (h2) h2.style.textDecoration = "none"
+                    if (svg) svg.style.color = "#9ca3af"
+                }}
+            >
+                <h2 className={`text-[#393939] text-lg font-bold pt-2 pb-2 pr-12 pl-2 ${notoSansJP.className}`}>
+                    {post.title}
+                </h2>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-gray-400 flex-shrink-0">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
             </Link>
