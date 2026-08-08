@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { Navigation } from "./Navigation"
 import { LogoutButton } from "../ui/LogoutButton"
+import Link from "next/link"
 
 export async function Header() {
     const session = await getServerSession(authOptions)
@@ -13,10 +14,10 @@ export async function Header() {
 
                 {/* 左側：ユーザー名 + ログアウトボタン */}
                 <div className="flex items-center gap-3">
-                    <div className="flex items-baseline gap-1">
+                    <Link href="/dashboard" className="flex items-baseline gap-1">
                         <span className="text-lg font-bold text-gray-800">{session?.user?.name}</span>
                         <span className="text-xs text-gray-500">さん</span>
-                    </div>
+                    </Link>
                     <LogoutButton />
                 </div>
 
