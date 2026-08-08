@@ -103,7 +103,7 @@ export function PostCard({ post, currentUserId }: PostCardProps) {
                     </Link>
                     <button
                         onClick={handleDelete}
-                        className="flex items-center gap-1 border border-red-400 text-red-500 px-4 py-2 rounded-md text-sm hover:shadow-md"
+                        className="flex items-center gap-1 border border-red-400 text-red-500 px-4 py-2 rounded-md text-sm hover:shadow-md cursor-pointer"
                     >
                         {/* 削除アイコン */}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
