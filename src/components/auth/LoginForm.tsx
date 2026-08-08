@@ -13,6 +13,7 @@ type LoginFormData = z.infer<typeof loginSchema>
 export function LoginForm() {
     const router = useRouter()
     const [showPassword, setShowPassword] = useState(false)
+    const [loginError, setLoginError] = useState<string | null>(null)
     const {
         register,
         handleSubmit,
@@ -22,6 +23,8 @@ export function LoginForm() {
     })
 
     async function onSubmit(data: LoginFormData) {
+        setLoginError(null)
+
         const result = await signIn("credentials", {
             email: data.email,
             password: data.password,
@@ -29,9 +32,10 @@ export function LoginForm() {
         })
 
         if (result?.error) {
-            alert("メールアドレスまたはパスワードが違います")
+            setLoginError("メールアドレスまたはパスワードが違います")
             return
         }
+        console.log("result:", result)  // ← 追加
 
         router.push("/dashboard")
     }
@@ -100,6 +104,9 @@ export function LoginForm() {
                     </p>
                     {errors.password && (
                         <p className="text-red-600 text-sm">{errors.password.message}</p>
+                    )}
+                    {loginError && (
+                        <p className="text-red-600 text-sm text-center">{loginError}</p>
                     )}
                 </div>
 

@@ -13,6 +13,7 @@ export function RegisterForm() {
     const router = useRouter()
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const [serverError, setServerError] = useState<string | null>(null)
 
     const {
         register,
@@ -30,7 +31,8 @@ export function RegisterForm() {
         })
 
         if (!res.ok) {
-            alert("登録に失敗しました")
+            const error = await res.json()
+            setServerError(error.error)
             return
         }
 
@@ -81,6 +83,9 @@ export function RegisterForm() {
                     />
                     {errors.email && (
                         <p className="text-red-600 text-sm">{errors.email.message}</p>
+                    )}
+                    {serverError && (
+                        <p className="text-red-600 text-sm">{serverError}</p>
                     )}
                 </div>
 
