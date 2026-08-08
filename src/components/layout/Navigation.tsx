@@ -18,11 +18,19 @@ export function Navigation() {
                 <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-sm font-medium hover:text-blue-600 transition-colors
+                    className={`text-sm font-medium transition-colors
             ${pathname === link.href
                             ? "text-blue-600 border-b-2 border-blue-600"
                             : "text-gray-600"
                         }`}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#2563eb"
+                    }}
+                    onMouseLeave={(e) => {
+                        if (pathname !== link.href) {
+                            e.currentTarget.style.color = "#4b5563"
+                        }
+                    }}
                 >
                     {link.label}
                 </Link>
