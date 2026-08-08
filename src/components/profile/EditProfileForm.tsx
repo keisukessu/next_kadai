@@ -53,6 +53,7 @@ export function EditProfileForm({ user }: EditProfileFormProps) {
         }
 
         router.push("/dashboard/profile")
+        router.refresh()
     }
 
     return (
