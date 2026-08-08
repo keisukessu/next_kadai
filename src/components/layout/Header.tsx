@@ -9,7 +9,12 @@ export async function Header() {
     const session = await getServerSession(authOptions)
 
     return (
-        <header className="bg-[#fafafa] shadow-sm sticky top-0 z-50">
+        <header
+            className="sticky top-0 z-50 shadow-sm"
+            style={{
+                background: "linear-gradient(135deg, #f1f7fc 0%, #dde9f3 50%, #f1f3fb 100%)"
+            }}
+        >
             <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
 
                 {/* 左側：ユーザー名 + ログアウトボタン */}
