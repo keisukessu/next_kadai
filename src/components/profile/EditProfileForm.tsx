@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { updateProfileSchema } from "@/lib/validations"
 import { z } from "zod"
 import { useState } from "react"
+import { UpdateButton } from "../ui/UpdateButton"
+import { UpdateCancelButton } from "../ui/UpdateCancelButton"
 
 type UpdateProfileData = z.infer<typeof updateProfileSchema>
 
@@ -168,20 +170,8 @@ export function EditProfileForm({ user }: EditProfileFormProps) {
 
             {/* ボタン */}
             <div className="flex gap-2">
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="px-6 py-2 rounded-2xl bg-white text-[#414245] border-2 border-[#1b3c97] font-medium cursor-pointer hover:shadow-md transition-all duration-200 disabled:opacity-50"
-                >
-                    {isSubmitting ? "更新中..." : "更新する"}
-                </button>
-                <button
-                    type="button"
-                    onClick={() => router.push("/dashboard/profile")}
-                    className="px-6 py-2 rounded-2xl bg-white text-[#414245] border-2 border-[#1b3c97] font-medium cursor-pointer hover:shadow-md transition-all duration-200"
-                >
-                    キャンセル
-                </button>
+                <UpdateButton isSubmitting={isSubmitting} />
+                <UpdateCancelButton href="/dashboard/profile" />
             </div>
 
         </form>

@@ -7,6 +7,7 @@ import { PostList } from "@/components/posts/PostList"
 import Link from "next/link"
 import { sawarabiGothic, notoSansJP } from "@/lib/fonts"
 import Image from "next/image"
+import { NewPostButton } from "@/components/ui/NewPostButton"
 
 export default async function DashboardPage({
     searchParams
@@ -62,23 +63,7 @@ export default async function DashboardPage({
                 <h1
                     className={`text-[50px] text-stroke font-bold text-white ${notoSansJP.className}`}
                 >投稿一覧</h1>
-                <Link
-                    href="/dashboard/posts/create"
-                    className={`
-                        bg-white
-                        text-[#414245]
-                        text-lg
-                        px-4 py-2
-                        rounded-xl
-                        border-2 border-[#1b3c97]
-                        hover:shadow-xl
-                        transition-shadow
-                        duration-200
-                        ${sawarabiGothic.className}
-                    `}
-                >
-                    ＋ 新規投稿
-                </Link>
+                <NewPostButton />
             </div>
 
             <PostList
